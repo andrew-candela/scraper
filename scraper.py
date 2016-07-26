@@ -9,6 +9,7 @@ import sys
 import datetime
 import smtplib
 from sqlalchemy import *
+import py_utils as pu
 
 campsites = [
 {"site":"lower pines",
@@ -27,6 +28,7 @@ campsites = [
 #"url":"http://www.recreation.gov/camping/Crane_Flat/r/campsiteCalendar.do?page=calendar&search=site&contractCode=NRSO&parkId=70930&calarvdate={0}"}
 ]
 
+creds=pu.creds=pu.load_credentials()
 
 cj = cookielib.LWPCookieJar()
 br = mechanize.Browser()
@@ -43,8 +45,7 @@ except IndexError:
 else:
 	start_date=datetime.datetime.strptime(sys.argv[1],'%Y-%m-%d')
 
-mysql_config={'user':'scraper_logging','password':'*****','host':'localhost','database':'yosemite_scraper_logs'}
-engine_string='mysql://{}:{}@localhost/{}?charset=utf8&use_unicode=0'.format(mysql_config['user'],mysql_config['password'],mysql_config['database'])
+engine_string='mysql://{}:{}@localhost/{}?charset=utf8&use_unicode=0'.format(creds['mysql_config']['user'],creds['mysql_config']['password'],creds['mysql_config']['database'])
 #create the sqlalchemy engine
 engine=create_engine(engine_string,pool_recycle=3600)
 
@@ -93,9 +94,9 @@ def find_dates():
 
 
 def send_mails(name,recip,site,avail,date,link):
-	fromaddr = '***'
-	GMAIL_PASSWORD='****'
-	GMAIL_USERNAME='****'
+	fromaddr = creds['gmail']['fromaddr']
+	GMAIL_PASSWORD=creds['gmail']['password']
+	GMAIL_USERNAME=creds['gmail']['username']
 	if avail==1:
 		avail_message=" is available "
 	else:
