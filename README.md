@@ -1,2 +1,2 @@
 # scraper
-This script looks for sites on recreation.gov and emails me and my friends when it finds one
+This script looks for sites on recreation.gov and emails my friends and I when it finds one.
