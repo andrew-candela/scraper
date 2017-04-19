@@ -1,35 +1,3 @@
-# Scraper operations:
-
-# Check the days that a user wants to be notified
-# 	combine those into unique set
-# for each day and site check status
-# 	if status has changed or doesn't exist
-# 		notify
-# 	if status has not changed
-# 		pass
-
-
-# How do I tell if someone wants a site and a day?
-# 	target dates will have user and date and site
-# 	join target dates with active users and build a dataset
-# 	maybe just iterate through each day.
-
-# 	Build something that lets users edit their target dates and 
-
-# want to have this: a dictionary with
-# 	{
-# 		date:{
-# 			site1:{
-# 				users:[all the users]
-# 			},
-# 			site2:{}
-# 		}
-# 	}
-
-# so users can do the following:
-# 	add dates to target_dates
-# 	check what dates they want for a park or all parks
-# 	remove dates
 import sqlite3 as sql 
 import py_utils as pu
 import smtplib
