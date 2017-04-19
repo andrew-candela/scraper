@@ -8,25 +8,10 @@ import sys
 #import mysql.connector
 import datetime
 import smtplib
-from sqlalchemy import *
+import sqlite3
 import py_utils as pu
 
-campsites = [
-{"site":"lower pines",
-"url":"http://www.recreation.gov/camping/Lower_Pines/r/campsiteCalendar.do?page=calendar&search=site&contractCode=NRSO&parkId=70928&calarvdate={0}"},
-{"site":"north pines",
-"url":"http://www.recreation.gov/camping/North_Pines/r/campsiteCalendar.do?page=calendar&search=site&contractCode=NRSO&parkId=70927&calarvdate={0}"},
-{"site":"upper pines",
-"url":"http://www.recreation.gov/camping/Upper_Pines/r/campsiteCalendar.do?page=calendar&search=site&contractCode=NRSO&parkId=70925&calarvdate={0}"},
-{"site":"tuolumne meadows",
-"url":"http://www.recreation.gov/camping/Tuolumne_Meadows/r/campsiteCalendar.do?page=calendar&search=site&contractCode=NRSO&parkId=70926&calarvdate={0}"},
-{"site":"bridaveil creek",
-"url":"http://www.recreation.gov/camping/Bridalveil_Creek_Group_And_Horse_Camp/r/campsiteCalendar.do?page=calendar&search=site&contractCode=NRSO&parkId=70931&calarvdate={0}"},
-{"site":"hodgdon meadow",
-"url":"http://www.recreation.gov/camping/Hodgdon_Meadow/r/campsiteCalendar.do?page=calendar&search=site&contractCode=NRSO&parkId=70929&calarvdate={0}"},
-#{"site":"crane flat",
-#"url":"http://www.recreation.gov/camping/Crane_Flat/r/campsiteCalendar.do?page=calendar&search=site&contractCode=NRSO&parkId=70930&calarvdate={0}"}
-]
+
 
 creds=pu.creds=pu.load_credentials()
 
@@ -44,10 +29,6 @@ except IndexError:
 	start_date=datetime.datetime.today()
 else:
 	start_date=datetime.datetime.strptime(sys.argv[1],'%Y-%m-%d')
-
-engine_string='mysql://{}:{}@localhost/{}?charset=utf8&use_unicode=0'.format(creds['mysql_config']['user'],creds['mysql_config']['password'],creds['mysql_config']['database'])
-#create the sqlalchemy engine
-engine=create_engine(engine_string,pool_recycle=3600)
 
 
 #this function will check to see if the availability status of a campsite has changed since the last time I have sent a notification.
