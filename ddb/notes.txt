@@ -1,0 +1,8 @@
+for notifications:
+find target dates find target camsites
+for each date/campsite:
+	check availability - return {park:avail}
+	check notification status - take {park:avail} return {park-site}
+	send emails
+	update notification history
+	

@@ -1,0 +1,107 @@
+create_table_args_contacts={
+    'TableName':'contacts',
+    'KeySchema':[
+        {
+            'AttributeName':'email',
+            'KeyType':'HASH'
+        }
+    ],
+    'AttributeDefinitions':[
+        {
+            'AttributeName':'email',
+            'AttributeType':'S'
+        },
+        
+    ],
+    'ProvisionedThroughput':{
+        'ReadCapacityUnits':1,
+        'WriteCapacityUnits':1
+    }
+}
+
+create_table_args_targets={
+    'TableName':'targets',
+    'KeySchema':[
+        {
+            'AttributeName':'park',
+            'KeyType':'HASH'
+        },
+        {
+            'AttributeName':'date',
+            'KeyType':'RANGE'
+        }
+    ],
+    'AttributeDefinitions':[
+        {
+            'AttributeName':'park',
+            'AttributeType':'S'
+        },
+        {
+            'AttributeName':'date',
+            'AttributeType':'S'
+        }
+        
+    ],
+    'ProvisionedThroughput':{
+        'ReadCapacityUnits':1,
+        'WriteCapacityUnits':1
+    }
+}
+
+create_table_args_campsites={
+    'TableName':'campsites',
+    'KeySchema':[
+        {
+            'AttributeName':'site',
+            'KeyType':'HASH'
+        },
+        {
+            'AttributeName':'park',
+            'KeyType':'RANGE'
+        }
+    ],
+    'AttributeDefinitions':[
+        {
+            'AttributeName':'park',
+            'AttributeType':'S'
+        },
+        {
+            'AttributeName':'site',
+            'AttributeType':'S'
+        }
+        
+    ],
+    'ProvisionedThroughput':{
+        'ReadCapacityUnits':1,
+        'WriteCapacityUnits':1
+    }
+}
+
+create_table_args_notifications={
+    'TableName':'notifications',
+    'KeySchema':[
+        {
+            'AttributeName':'date',
+            'KeyType':'HASH'
+        },
+        {
+            'AttributeName':'park_site',
+            'KeyType':'RANGE'
+        }
+    ],
+    'AttributeDefinitions':[
+        {
+            'AttributeName':'date',
+            'AttributeType':'S'
+        },
+        {
+            'AttributeName':'park_site',
+            'AttributeType':'S'
+        }
+        
+    ],
+    'ProvisionedThroughput':{
+        'ReadCapacityUnits':1,
+        'WriteCapacityUnits':1
+    }
+}
