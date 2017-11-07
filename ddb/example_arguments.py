@@ -24,11 +24,11 @@ create_table_args_targets={
     'KeySchema':[
         {
             'AttributeName':'park',
-            'KeyType':'HASH'
+            'KeyType':'RANGE'
         },
         {
             'AttributeName':'date',
-            'KeyType':'RANGE'
+            'KeyType':'HASH'
         }
     ],
     'AttributeDefinitions':[
@@ -52,11 +52,11 @@ create_table_args_campsites={
     'TableName':'campsites',
     'KeySchema':[
         {
-            'AttributeName':'site',
+            'AttributeName':'park',
             'KeyType':'HASH'
         },
         {
-            'AttributeName':'park',
+            'AttributeName':'site',
             'KeyType':'RANGE'
         }
     ],
@@ -68,8 +68,7 @@ create_table_args_campsites={
         {
             'AttributeName':'site',
             'AttributeType':'S'
-        }
-        
+        },        
     ],
     'ProvisionedThroughput':{
         'ReadCapacityUnits':1,
@@ -81,24 +80,23 @@ create_table_args_notifications={
     'TableName':'notifications',
     'KeySchema':[
         {
-            'AttributeName':'date',
+            'AttributeName':'park_site',
             'KeyType':'HASH'
         },
         {
-            'AttributeName':'park_site',
+            'AttributeName':'date',
             'KeyType':'RANGE'
         }
     ],
     'AttributeDefinitions':[
         {
-            'AttributeName':'date',
+            'AttributeName':'park_site',
             'AttributeType':'S'
         },
         {
-            'AttributeName':'park_site',
+            'AttributeName':'date',
             'AttributeType':'S'
         }
-        
     ],
     'ProvisionedThroughput':{
         'ReadCapacityUnits':1,

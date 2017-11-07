@@ -2,12 +2,13 @@ import boto3
 email=boto3.client('ses')
 
 class Email():
-	def __init__(self):
-		self.mailer=boto3.client('ses')
 
-	def send_message(self,from_address,recipients,subject,message):
+	mailer=boto3.client('ses')
+	from_address='campsite.notification@gmail.com'
+
+	def send_message(self,recipients,subject,message):
 		dest={'ToAddresses':recipients}
-		source=from_address
+		source=self.from_address
 		mes={
 			'Subject':{
 				"Data":subject
